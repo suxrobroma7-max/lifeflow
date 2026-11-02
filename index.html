@@ -99,45 +99,21 @@ main{padding-top:20px;padding-bottom:100px}
 <aside>
 <div class="logo">Life<i>Flow</i></div>
 <div class="navs" id="navs"></div>
-<div class="tools"><div class="seg" id="langs"></div><button class="theme" id="theme" aria-label="Theme">◐</button><button class="theme" id="out" data-a="out" hidden aria-label="Sign out">⎋</button></div>
+<div class="tools"><div class="seg" id="langs"></div><button class="theme" id="theme" aria-label="Theme">◐</button></div>
 </aside>
 <main id="main"></main>
 </div>
 <nav class="tabs" id="tabs"></nav>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
 <script>
 var I={money:'<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/></svg>',habit:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.5 2.5 4.5-5"/></svg>',day:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>',lists:'<svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>',cal:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>'};
 var T={
-uz:{loc:'uz-UZ',day:'Kunim',lists:'Roʻyxat',cal:'Taqvim',g:['Xayrli tong','Xayrli kun','Xayrli kech'],left:function(n){return n+' ta vazifa qoldi'},all:'Bugungi barcha ishlar bajarildi',noTask:'Bugun uchun vazifa yoʻq. Birinchisini qoʻshing.',task:'Yangi vazifa',add:'Qoʻshish',item:'Yangi element',list:'Yangi roʻyxat',noItem:'Roʻyxat boʻsh.',clear:'Bajarilganlarni tozalash',del:'Roʻyxatni oʻchirish',event:'Yangi tadbir',noEv:'Bu kunda tadbir yoʻq.',today:'Bugun',name:'Roʻyxat nomi',def:'Xaridlar',money:'Pulim',email:'Elektron pochta',pass:'Parol (kamida 6 belgi)',login:'Kirish',signup:'Roʻyxatdan oʻtish',noAcc:'Akkauntingiz yoʻqmi? Roʻyxatdan oʻting',haveAcc:'Akkauntingiz bormi? Kiring',authErr:'Pochta va kamida 6 belgili parolni kiriting.',checkMail:'Pochtangizga tasdiqlash xati yuborildi. Havolani bosing va qayta kiring.',habit:'Odatlar',bal:'Balans',inc:'Daromad',exp:'Xarajat',amt:'Summa',note:'Izoh',noTx:'Bu oyda yozuvlar yoʻq.',newHabit:'Yangi odat',noHabit:'Birinchi odatingizni qoʻshing.',streak:function(n){return n+' kun ketma-ket'},hdone:function(a,b){return 'Bugun '+a+' / '+b+' odat bajarildi'},cats:{food:'Oziq-ovqat',tr:'Transport',home:'Uy',fun:'Dam olish',oth:'Boshqa',inc:'Daromad'}},
-en:{loc:'en-US',day:'My Day',lists:'Lists',cal:'Calendar',g:['Good morning','Good afternoon','Good evening'],left:function(n){return n+(n==1?' task':' tasks')+' left'},all:'Everything for today is done',noTask:'No tasks for today. Add your first one.',task:'New task',add:'Add',item:'New item',list:'New list',noItem:'This list is empty.',clear:'Clear completed',del:'Delete list',event:'New event',noEv:'No events on this day.',today:'Today',name:'List name',def:'Groceries',money:'Money',email:'Email',pass:'Password (6+ characters)',login:'Sign in',signup:'Create account',noAcc:'No account? Create one',haveAcc:'Have an account? Sign in',authErr:'Enter an email and a password of 6+ characters.',checkMail:'A confirmation email was sent. Open the link, then sign in.',habit:'Habits',bal:'Balance',inc:'Income',exp:'Expenses',amt:'Amount',note:'Note',noTx:'No entries this month.',newHabit:'New habit',noHabit:'Add your first habit.',streak:function(n){return n+(n==1?' day':' days')+' in a row'},hdone:function(a,b){return a+' of '+b+' habits done today'},cats:{food:'Food',tr:'Transport',home:'Home',fun:'Leisure',oth:'Other',inc:'Income'}},
-ru:{loc:'ru-RU',day:'Мой день',lists:'Списки',cal:'Календарь',g:['Доброе утро','Добрый день','Добрый вечер'],left:function(n){return 'Осталось задач: '+n},all:'Все дела на сегодня выполнены',noTask:'На сегодня задач нет. Добавьте первую.',task:'Новая задача',add:'Добавить',item:'Новый пункт',list:'Новый список',noItem:'Список пуст.',clear:'Убрать выполненные',del:'Удалить список',event:'Новое событие',noEv:'В этот день событий нет.',today:'Сегодня',name:'Название списка',def:'Покупки',money:'Деньги',email:'Электронная почта',pass:'Пароль (от 6 символов)',login:'Войти',signup:'Создать аккаунт',noAcc:'Нет аккаунта? Создайте',haveAcc:'Есть аккаунт? Войдите',authErr:'Введите почту и пароль от 6 символов.',checkMail:'Письмо с подтверждением отправлено. Откройте ссылку и войдите.',habit:'Привычки',bal:'Баланс',inc:'Доходы',exp:'Расходы',amt:'Сумма',note:'Заметка',noTx:'В этом месяце записей нет.',newHabit:'Новая привычка',noHabit:'Добавьте первую привычку.',streak:function(n){return 'Дней подряд: '+n},hdone:function(a,b){return 'Сегодня выполнено '+a+' из '+b},cats:{food:'Еда',tr:'Транспорт',home:'Дом',fun:'Досуг',oth:'Другое',inc:'Доход'}}};
+uz:{loc:'uz-UZ',day:'Kunim',lists:'Roʻyxat',cal:'Taqvim',g:['Xayrli tong','Xayrli kun','Xayrli kech'],left:function(n){return n+' ta vazifa qoldi'},all:'Bugungi barcha ishlar bajarildi',noTask:'Bugun uchun vazifa yoʻq. Birinchisini qoʻshing.',task:'Yangi vazifa',add:'Qoʻshish',item:'Yangi element',list:'Yangi roʻyxat',noItem:'Roʻyxat boʻsh.',clear:'Bajarilganlarni tozalash',del:'Roʻyxatni oʻchirish',event:'Yangi tadbir',noEv:'Bu kunda tadbir yoʻq.',today:'Bugun',name:'Roʻyxat nomi',def:'Xaridlar',money:'Pulim',habit:'Odatlar',bal:'Balans',inc:'Daromad',exp:'Xarajat',amt:'Summa',note:'Izoh',noTx:'Bu oyda yozuvlar yoʻq.',newHabit:'Yangi odat',noHabit:'Birinchi odatingizni qoʻshing.',streak:function(n){return n+' kun ketma-ket'},hdone:function(a,b){return 'Bugun '+a+' / '+b+' odat bajarildi'},cats:{food:'Oziq-ovqat',tr:'Transport',home:'Uy',fun:'Dam olish',oth:'Boshqa',inc:'Daromad'}},
+en:{loc:'en-US',day:'My Day',lists:'Lists',cal:'Calendar',g:['Good morning','Good afternoon','Good evening'],left:function(n){return n+(n==1?' task':' tasks')+' left'},all:'Everything for today is done',noTask:'No tasks for today. Add your first one.',task:'New task',add:'Add',item:'New item',list:'New list',noItem:'This list is empty.',clear:'Clear completed',del:'Delete list',event:'New event',noEv:'No events on this day.',today:'Today',name:'List name',def:'Groceries',money:'Money',habit:'Habits',bal:'Balance',inc:'Income',exp:'Expenses',amt:'Amount',note:'Note',noTx:'No entries this month.',newHabit:'New habit',noHabit:'Add your first habit.',streak:function(n){return n+(n==1?' day':' days')+' in a row'},hdone:function(a,b){return a+' of '+b+' habits done today'},cats:{food:'Food',tr:'Transport',home:'Home',fun:'Leisure',oth:'Other',inc:'Income'}},
+ru:{loc:'ru-RU',day:'Мой день',lists:'Списки',cal:'Календарь',g:['Доброе утро','Добрый день','Добрый вечер'],left:function(n){return 'Осталось задач: '+n},all:'Все дела на сегодня выполнены',noTask:'На сегодня задач нет. Добавьте первую.',task:'Новая задача',add:'Добавить',item:'Новый пункт',list:'Новый список',noItem:'Список пуст.',clear:'Убрать выполненные',del:'Удалить список',event:'Новое событие',noEv:'В этот день событий нет.',today:'Сегодня',name:'Название списка',def:'Покупки',money:'Деньги',habit:'Привычки',bal:'Баланс',inc:'Доходы',exp:'Расходы',amt:'Сумма',note:'Заметка',noTx:'В этом месяце записей нет.',newHabit:'Новая привычка',noHabit:'Добавьте первую привычку.',streak:function(n){return 'Дней подряд: '+n},hdone:function(a,b){return 'Сегодня выполнено '+a+' из '+b},cats:{food:'Еда',tr:'Транспорт',home:'Дом',fun:'Досуг',oth:'Другое',inc:'Доход'}}};
 var S={lang:'uz',theme:'auto',tab:'day',tasks:[],lists:[],ev:[],cur:null,money:[],habits:[]};
-var V={ym:new Date(),sel:null,mode:'in',err:'',boot:false};
+var V={ym:new Date(),sel:null};
 try{var r=localStorage.getItem('lifeflow');if(r)Object.assign(S,JSON.parse(r))}catch(e){}
-/* ===== SUPABASE SOZLAMASI: oʻz qiymatlaringizni qoʻying ===== */
-var SUPA_URL='https://olijymlciyscokaenqsy.supabase.co';   /* masalan: https://abcd1234.supabase.co */
-var SUPA_KEY='sb_publishable_NqLuEUpgwilq5XO_-XzY9g_dPe2tcJm';   /* anon public key (service_role emas!) */
-/* ============================================================ */
-var sb=(window.supabase&&SUPA_URL&&SUPA_KEY)?supabase.createClient(SUPA_URL,SUPA_KEY):null;
-var U=null,pt;V.boot=!!sb;
-function local(){try{localStorage.setItem('lifeflow',JSON.stringify(S))}catch(e){}}
-function save(){local();if(sb&&U){clearTimeout(pt);pt=setTimeout(push,600)}}
-function push(){if(!sb||!U)return Promise.resolve();return sb.from('user_data').upsert({user_id:U.id,data:{tasks:S.tasks,lists:S.lists,ev:S.ev,money:S.money,habits:S.habits},updated_at:new Date().toISOString()})}
-function pull(){return sb.from('user_data').select('data').eq('user_id',U.id).maybeSingle().then(function(r){var d=r.data&&r.data.data;if(d){S.tasks=d.tasks||[];S.lists=d.lists||[];S.ev=d.ev||[];S.money=d.money||[];S.habits=d.habits||[];S.cur=null;local()}else return push()}).catch(function(){})}
-function auth(a){
-var L=t();
-if(a==='swap'){V.mode=V.mode==='up'?'in':'up';V.err='';ui();return}
-if(a==='out'){sb.auth.signOut().then(function(){U=null;S.tasks=[];S.lists=[{id:uid(),name:L.def,items:[]}];S.ev=[];S.money=[];S.habits=[];S.cur=null;local();V.mode='in';ui()});return}
-var em=val('ae'),pw=(document.getElementById('ap')||{}).value||'';
-if(!em||pw.length<6){V.err=L.authErr;ui();return}
-V.err='';
-(a==='signup'?sb.auth.signUp({email:em,password:pw}):sb.auth.signInWithPassword({email:em,password:pw})).then(function(r){
-if(r.error){V.err=r.error.message;ui();return}
-if(!r.data.session){V.err=L.checkMail;V.mode='in';ui();return}
-U=r.data.user;return pull().then(ui)
-})}
-function vAuth(){var L=t(),up=V.mode==='up';
-return '<div style="max-width:380px;margin:8vh auto 0"><h1>Life<span style="color:var(--ac)">Flow</span></h1><p class="sub">'+(up?L.signup:L.login)+'</p><div class="add" style="flex-direction:column"><input id="ae" style="flex:none" type="email" autocomplete="email" placeholder="'+L.email+'"><input id="ap" style="flex:none" type="password" autocomplete="'+(up?'new-password':'current-password')+'" placeholder="'+L.pass+'"><button class="btn" style="padding:13px" data-a="'+(up?'signup':'login')+'">'+(up?L.signup:L.login)+'</button></div>'+(V.err?'<p class="neg" style="font-size:14px">'+esc(V.err)+'</p>':'')+'<button class="link" data-a="swap">'+(up?L.haveAcc:L.noAcc)+'</button></div>'}
+function save(){try{localStorage.setItem('lifeflow',JSON.stringify(S))}catch(e){}}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -146,12 +122,12 @@ function t(){return T[S.lang]}
 function ui(){
 document.documentElement.lang=S.lang;
 if(S.theme==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',S.theme);
-var gate=sb&&(V.boot||!U);var tabs=gate?[]:['day','lists','cal','money','habit'];document.getElementById('tabs').style.display=gate?'none':'';document.getElementById('out').hidden=!U;
+var tabs=['day','lists','cal','money','habit'];
 var nv=tabs.map(function(k){return '<button class="nav'+(S.tab===k?' on':'')+'" data-a="tab" data-v="'+k+'">'+I[k]+t()[k]+'</button>'}).join('');
 document.getElementById('navs').innerHTML=nv;
 document.getElementById('tabs').innerHTML=tabs.map(function(k){return '<button class="'+(S.tab===k?'on':'')+'" data-a="tab" data-v="'+k+'">'+I[k]+t()[k]+'</button>'}).join('');
 document.getElementById('langs').innerHTML=['uz','en','ru'].map(function(l){return '<button class="'+(S.lang===l?'on':'')+'" data-a="lang" data-v="'+l+'">'+l.toUpperCase()+'</button>'}).join('');
-document.getElementById('main').innerHTML=gate?(V.boot?'':vAuth()):S.tab==='day'?vDay():S.tab==='lists'?vLists():S.tab==='money'?vMoney():S.tab==='habit'?vHabit():vCal();
+document.getElementById('main').innerHTML=S.tab==='day'?vDay():S.tab==='lists'?vLists():S.tab==='money'?vMoney():S.tab==='habit'?vHabit():vCal();
 }
 function vDay(){
 var L=t(),h=new Date().getHours(),g=L.g[h<12?0:h<18?1:2];
@@ -215,7 +191,6 @@ function val(id){var e=document.getElementById(id);return e?e.value.trim():''}
 document.addEventListener('click',function(e){
 var b=e.target.closest('[data-a]');if(!b)return;
 var a=b.dataset.a,v=b.dataset.v,l=curList();
-if(a==='login'||a==='signup'||a==='swap'||a==='out'){auth(a);return}
 if(a==='tab')S.tab=v;
 else if(a==='lang')S.lang=v;
 else if(a==='addTask'){var x=val('tt');if(!x)return;S.tasks.push({id:uid(),t:x,tm:val('tm'),d:tk,done:false})}
@@ -243,7 +218,6 @@ if(a==='addTask'||a==='addItem'||a==='addEv'||a==='addTx'||a==='addHabit'){var f
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches('.add input')){var bt=e.target.parentNode.querySelector('.btn');if(bt)bt.click()}});
 document.getElementById('theme').addEventListener('click',function(){S.theme=S.theme==='auto'?'dark':S.theme==='dark'?'light':'auto';save();ui()});
 if(!S.lists.length){S.lists.push({id:uid(),name:T[S.lang].def,items:[]});S.cur=S.lists[0].id}
-if(sb){sb.auth.getSession().then(function(r){if(r.data.session){U=r.data.session.user;return pull()}}).then(function(){V.boot=false;ui()},function(){V.boot=false;ui()})}
 ui();
 </script>
 </body>
